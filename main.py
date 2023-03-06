@@ -2,7 +2,7 @@ from validator import Validator
 
 
 def main():
-    n = 4
+    n = int(input("What is the cardinal of the set?\n>>\t"))
     validator = Validator(n)
     counter = 0
     while validator.generate_next_valid():
