@@ -1,11 +1,14 @@
-from generator import Generator
+from validator import Validator
 
 
 def main():
-    generator = Generator(4)
-    while generator.generate_next_valid():
-        print(generator.transfrom_array_into_matrix())
-        print()
+    n = 4
+    validator = Validator(n)
+    counter = 0
+    while validator.generate_next_valid():
+        print(validator.transform_array_into_matrix())
+        counter += 1
+        print((n-1)*"\t", counter)
 
 
 if __name__ == '__main__':
