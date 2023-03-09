@@ -1,4 +1,5 @@
 from generator import Generator
+from isomorphism import Isomorphism
 import numpy as np
 
 class Validator:
@@ -9,8 +10,10 @@ class Validator:
 
         self.__no_operations = self.__compute_number_of_operations()
         self.__no_assoc_operations = 0
+
+        self.__isomorphism = Isomorphism(cardinal_set)
     def __compute_number_of_operations(self):
-        return (self.__cardinal * self.__cardinal) * self.__cardinal
+        return (self.__cardinal * self.__cardinal) ** self.__cardinal
 
     def __is_associative(self) -> bool:
         associative_generator = Generator(3, self.__cardinal)
