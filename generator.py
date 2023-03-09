@@ -21,9 +21,9 @@ class Generator:
         # digit and carry the one. Moreover, we have to reset all the less significant digits to their starting value
         # (that being 0)
         while self.__current_digit >= 0 and self.__array_projection[self.__current_digit] == self.__cardinal - 1:
-            #TODO: change to python slicing
-            for i in range(self.__current_digit, self.__length_group):
-                self.__array_projection[i] = 0
+            self.__array_projection[self.__current_digit:self.__length_group] = 0
+            #for i in range(self.__current_digit, self.__length_group):
+            #    self.__array_projection[i] = 0
             self.__current_digit -= 1
 
         # if our current_digit pointer is situatead outside the range of our number, than that means that we've gone
@@ -38,7 +38,7 @@ class Generator:
         self.__current_digit = self.__length_group - 1
         return True
 
-    def get_generated_array_ref(self):
+    def get_array_ref(self):
         return self.__array_projection
 
 
