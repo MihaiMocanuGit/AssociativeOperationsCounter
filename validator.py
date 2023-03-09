@@ -19,12 +19,11 @@ class Validator:
 
         # we calculate this beforehand, it will be used in self.__is_associative. We are actually computing all the ways
         # we can write x*(y*z) using elements from the set
-        self.__cartesian_product = list(product(range(self.__cardinal), repeat=cardinal_set))
+        self.__cartesian_product = list(product(range(self.__cardinal), repeat=3))
     def __compute_number_of_operations(self):
         return (self.__cardinal * self.__cardinal) ** self.__cardinal
 
     def __is_associative(self) -> bool:
-        associative_generator = Generator(3, self.__cardinal)
         cartesian_product = self.__cartesian_product
         # (x * y) * z =?= x * (y * z)
         # We use associative_generator to go through all possible groups of <self.__cardinal> elements placed into 3 blocks
@@ -34,19 +33,16 @@ class Validator:
         def getIJ(i:int, j:int):
             return operation_map[i*self.__cardinal + j]
 
-        has_not_finished = associative_generator.generate_next()
-
-        while has_not_finished:
-            x = associative_generator.get_array_ref()[0]
-            y = associative_generator.get_array_ref()[1]
-            z = associative_generator.get_array_ref()[2]
+        for grouping in cartesian_product:
+            x = grouping[0]
+            y = grouping[1]
+            z = grouping[2]
 
             left_side = getIJ(getIJ(x, y), z)
             right_side = getIJ(x, getIJ(y, z))
             if left_side != right_side:
                 return False
 
-            has_not_finished = associative_generator.generate_next()
         return True
 
 
