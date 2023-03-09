@@ -9,7 +9,7 @@ class Validator:
         # used to generate all operations
         self.__generator = Generator(cardinal_set * cardinal_set, cardinal_set)
 
-        # computing the number all existing operations. We will use this to count how many operations to be computed
+        # computing the number of all existing operations. We will use this to count how many operations to be computed
         # will be left
         self.__no_operations = self.__compute_number_of_operations()
         self.__no_assoc_operations = 0
@@ -26,7 +26,7 @@ class Validator:
     def __is_associative(self) -> bool:
         cartesian_product = self.__cartesian_product
         # (x * y) * z =?= x * (y * z)
-        # We use associative_generator to go through all possible groups of <self.__cardinal> elements placed into 3 blocks
+        # We use __is_associative to go through all possible groups of <self.__cardinal> elements placed into 3 blocks
         # the first space representing x, the second y and the third z
 
         operation_map = self.__generator.get_array_ref()
