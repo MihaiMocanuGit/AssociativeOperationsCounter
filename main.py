@@ -12,7 +12,6 @@ def main():
     n = int(input("What is the cardinal of the set?\n>>\t"))
     validator = Validator(n)
 
-
     start_time = time.time()
     for operation in validator.start_generation():
         operation_matrix = transform_array_into_matrix(operation[0], n)
@@ -21,8 +20,6 @@ def main():
         print((n-1)*"\t" + str(counter))
     print("--- %s seconds ---" % (time.time() - start_time))
 
-
-    print("--- %s seconds ---" % (time.time() - start_time))
 
 if __name__ == '__main__':
     main()
