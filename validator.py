@@ -24,14 +24,14 @@ class Validator:
         return (self.__cardinal * self.__cardinal) ** self.__cardinal
 
     def __is_associative(self) -> bool:
-        cartesian_product = self.__cartesian_product
         # (x * y) * z =?= x * (y * z)
-        # We use __is_associative to go through all possible groups of <self.__cardinal> elements placed into 3 blocks
+        # We use cartesian_product to go through all possible groups of <self.__cardinal> elements placed into 3 blocks
         # the first space representing x, the second y and the third z
+        cartesian_product = self.__cartesian_product
 
-        operation_map = self.__generator.get_array_ref()
+        operation_array = self.__generator.get_array_ref()
         def getIJ(i:int, j:int):
-            return operation_map[i*self.__cardinal + j]
+            return operation_array[i*self.__cardinal + j]
 
         for grouping in cartesian_product:
             x = grouping[0]
@@ -60,8 +60,13 @@ class Validator:
 
     def start_generation(self):
         while self.generate_next_valid():
-            self.__no_assoc_operations += 1
-            yield self.__generator.get_array_ref(), self.__no_assoc_operations
+            # self.__no_assoc_operations += 1
+
+            # self.__isomorphism._Isomorphism__compute_operation_array([0, 1, 2], self.__generator.get_array_ref())
+            for isomorphic_semi_group in self.__isomorphism.compute_isomorphisms(self.__generator.get_array_ref()):
+                self.__no_assoc_operations += 1
+                yield isomorphic_semi_group, self.__no_assoc_operations
+            # yield self.__generator.get_array_ref(), self.__no_assoc_operations
 
 
 
