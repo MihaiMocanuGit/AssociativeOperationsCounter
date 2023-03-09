@@ -38,7 +38,7 @@ class Generator:
         self.__current_digit = self.__length_group - 1
         return True
 
-    def get_generated_array_ref(self):
+    def get_array_ref(self):
         return self.__array_projection
 
 
